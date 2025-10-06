@@ -1,9 +1,12 @@
+import { ThemeChanger } from "../components";
+
 export function RulesPage() {
     return (
         <div
             id="rules-page"
-            className="d-flex flex-column align-items-center justify-content-center vh-100"
+            className="d-flex flex-column align-items-center justify-content-center vh-100 position-relative"
         >
+            <ThemeChanger />
             <div className="rules-box p-4 rounded shadow">
                 <h2 className="text-center mb-3">Mini Crossword Rules</h2>
                 <p>

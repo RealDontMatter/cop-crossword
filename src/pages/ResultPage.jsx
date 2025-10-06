@@ -1,11 +1,13 @@
 import React from "react";
+import { ThemeChanger } from "../components";
 
 export function ResultPage() {
     return (
         <div
             id="result-page"
-            className="d-flex align-items-center justify-content-center vh-100"
+            className="d-flex align-items-center justify-content-center vh-100 position-relative"
         >
+            <ThemeChanger />
             <div className="result-container text-center p-4 shadow rounded bg-white">
                 <h2 className="mb-3 fw-bold">Game Results</h2>
                 <p className="lead">Congratulations! 🎉</p>

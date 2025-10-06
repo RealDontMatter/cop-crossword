@@ -4,32 +4,18 @@ import { ThemeChanger } from "../components";
 export function GamePage() {
     return (
         <div
-            id={"game-page"}
-            className={
-                "d-flex align-items-center justify-content-center vh-100 position-relative"
-            }
+            id="game-page"
+            className="d-flex align-items-center justify-content-center vh-100 position-relative"
         >
             <ThemeChanger />
-            <div
-                className={
-                    "game-container d-flex justify-content-center align-items-center rounded shadow p-4"
-                }
-            >
-                <div
-                    className={
-                        "position-relative d-flex flex-column align-items-center"
-                    }
-                >
+            <div className="game-container d-flex justify-content-center align-items-center rounded shadow p-4">
+                <div className="position-relative d-flex flex-column align-items-center">
                     <GameField />
                     <button className={"btn btn-warning"}>Surrender</button>
                 </div>
             </div>
 
-            <div
-                className={
-                    "hint-container d-flex justify-content-center align-items-center flex-column border border-2 gap-3 h5 py-2"
-                }
-            >
+            <div className="hint-container d-flex justify-content-center align-items-center flex-column border border-2 gap-3 h5 py-2">
                 <div>
                     <span className={"fw-bold"}>Right:</span> Puffy Friend
                 </div>
@@ -39,5 +25,4 @@ export function GamePage() {
             </div>
         </div>
     );
-    // Add surrender button
 }
