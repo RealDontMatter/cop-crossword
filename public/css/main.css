@@ -1,2 +1,5 @@
 @import "rules.css";
 @import "rules.css";
+
+/* Components */
+@import "theme-toggle.css";

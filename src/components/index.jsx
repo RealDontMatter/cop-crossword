@@ -1,2 +1,4 @@
 import { TmpPageSelector } from "./TmpPageSelector.jsx";
-export { TmpPageSelector };
+import { ThemeChanger } from "./ThemeChanger.jsx";
+
+export { TmpPageSelector, ThemeChanger };
