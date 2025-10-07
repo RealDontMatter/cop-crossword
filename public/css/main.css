@@ -4,3 +4,16 @@
 
 /* Components */
 @import "theme-toggle.css";
+
+:root {
+    --primary-bg: white;
+    --secondary-bg: gray;
+    --primary-text: black;
+    --secondary-text: darkgray;
+}
+.dark-theme {
+    --primary-bg: black;
+    --secondary-bg: darkgray;
+    --primary-text: white;
+    --secondary-text: gray;
+}

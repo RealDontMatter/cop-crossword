@@ -1,6 +1,6 @@
 import { ThemeChanger } from "../components";
 
-export function RulesPage() {
+export function RulesPage({ setCurrentPage }) {
     return (
         <div
             id="rules-page"
@@ -26,7 +26,10 @@ export function RulesPage() {
                     </li>
                 </ul>
                 <div className="text-center mt-4">
-                    <button className="btn btn-primary">
+                    <button
+                        className="btn btn-primary"
+                        onClick={() => setCurrentPage("Settings")}
+                    >
                         Back to Settings
                     </button>
                 </div>
