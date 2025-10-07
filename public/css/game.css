@@ -1,0 +1,40 @@
+#game-page {
+}
+
+.game-container {
+    max-width: 500px;
+}
+
+/* Component */
+.game-field {
+    padding: 16px;
+
+    input {
+        outline: none;
+        caret-color: transparent;
+        cursor: default;
+        font-family: monospace;
+        font-size: 40px;
+        width: 64px;
+        height: 64px;
+        border-radius: 5px;
+        text-align: center;
+        text-transform: uppercase;
+        &:focus {
+            border: #85470c 3px solid;
+            background-color: #ff8807;
+        }
+    }
+}
+
+.hint-container {
+    width: 300px;
+    bottom: 100px;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+.wrong {
+    background: red !important;
+}
