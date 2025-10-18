@@ -33,14 +33,13 @@
     input:checked + .slider {
         left: calc(100% - 5px);
         transform: translate(-100%, -50%);
-        background-color: #AAA;
+        background-color: #aaa;
     }
-
 
     width: 110px;
     height: 60px;
     border-radius: 30px;
-    background: #AAA;
+    background: #aaa;
     position: absolute;
     right: 20px;
     top: 20px;
