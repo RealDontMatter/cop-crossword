@@ -17,3 +17,14 @@
     --primary-text: white;
     --secondary-text: gray;
 }
+
+#settings-page {
+    background-color: var(--primary-bg);
+    .settings-component {
+        color: var(--primary-text);
+    }
+
+    label:has(input[name="difficulty"]:checked) {
+        outline: 1px solid var(--bs-success);
+    }
+}

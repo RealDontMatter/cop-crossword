@@ -1,34 +1,69 @@
 import { ThemeChanger } from "../components";
+import { useState } from "react";
 
 export function SettingsPage({ setCurrentPage }) {
     return (
-        <div className="min-vh-100 d-flex align-items-center justify-content-center position-relative">
+        <div
+            className="min-vh-100 d-flex align-items-center justify-content-center position-relative"
+            id="settings-page"
+        >
             <ThemeChanger />
-            <div className="p-4 rounded-3 d-flex align-items-center flex-column gap-3 shadow">
-                <h2 className="m-0">Choose Difficulty</h2>
-                <div className="d-flex gap-3">
-                    <button
-                        className="btn btn-success"
-                        onClick={() => setCurrentPage("Game")}
-                    >
-                        Easy
-                    </button>
-                    <button
-                        className="btn btn-warning"
-                        onClick={() => setCurrentPage("Game")}
-                    >
-                        Normal
-                    </button>
-                    <button
-                        className="btn btn-danger"
-                        onClick={() => setCurrentPage("Game")}
-                    >
-                        Hard
-                    </button>
+            <form
+                action=""
+                className="p-4 rounded-3 d-flex flex-column gap-3 shadow settings-component"
+            >
+                <div className={"d-flex gap-3"}>
+                    <label htmlFor="name">Name</label>
+                    <input type="text" id="name" name="name" />
                 </div>
+                <div className="d-flex justify-content-center">
+                    <div className="d-flex gap-3">
+                        <label
+                            htmlFor="difficulty-radio-easy"
+                            className={"rounded-2 p-2"}
+                        >
+                            <input
+                                type="radio"
+                                name="difficulty"
+                                value="easy"
+                                id="difficulty-radio-easy"
+                                className="d-none"
+                            />
+                            Easy
+                        </label>
+                        <label
+                            htmlFor="difficulty-radio-normal"
+                            className={"rounded-2 p-2"}
+                        >
+                            <input
+                                type="radio"
+                                name="difficulty"
+                                value="normal"
+                                id="difficulty-radio-normal"
+                                className="d-none"
+                            />
+                            Normal
+                        </label>
+                        <label
+                            htmlFor="difficulty-radio-hard"
+                            className={"rounded-2 p-2 "}
+                        >
+                            <input
+                                type="radio"
+                                name="difficulty"
+                                value="hard"
+                                id="difficulty-radio-hard"
+                                className="d-none"
+                            />
+                            Hard
+                        </label>
+                    </div>
+                </div>
+                <button className="btn btn-secondary">Start</button>
                 <div>
                     Do not know rules? Check
                     <button
+                        type="submit"
                         className="text-decoration-underline bg-transparent border-0 text-primary"
                         onClick={() => setCurrentPage("Rules")}
                     >
@@ -36,7 +71,7 @@ export function SettingsPage({ setCurrentPage }) {
                     </button>
                     page
                 </div>
-            </div>
+            </form>
         </div>
     );
 }
