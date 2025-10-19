@@ -1,5 +1,6 @@
 import React from "react";
 import { ThemeChanger } from "../components";
+import { GamePage, SettingsPage } from "./";
 
 export function ResultPage({ setCurrentPage, success = true }) {
     return (
@@ -19,13 +20,20 @@ export function ResultPage({ setCurrentPage, success = true }) {
                 <div className="d-flex justify-content-center mt-4">
                     <button
                         className="btn btn-primary me-2"
-                        onClick={() => setCurrentPage("Settings")}
+                        onClick={() =>
+                            setCurrentPage({
+                                component: SettingsPage,
+                                props: {},
+                            })
+                        }
                     >
                         Go to Settings
                     </button>
                     <button
                         className="btn btn-secondary"
-                        onClick={() => setCurrentPage("Game")}
+                        onClick={() =>
+                            setCurrentPage({ component: GamePage, props: {} })
+                        }
                     >
                         Play Again
                     </button>

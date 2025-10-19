@@ -11,13 +11,15 @@ const pages = [
 ];
 
 function App() {
-    const [currentPage, setCurrentPage] = useState("Settings");
+    const [currentPage, setCurrentPage] = useState({
+        component: SettingsPage,
+        props: {},
+    });
 
-    // Settings -> Rules or Game -> Result
-    // Rules -> Settings
-
-    const page = pages.find((p) => p.name === currentPage);
-    const PageComponent = page.component;
+    const renderPage = () => {
+        let { component: PageComponent, props } = currentPage;
+        return <PageComponent {...props} setCurrentPage={setCurrentPage} />;
+    };
 
     return (
         <>
@@ -26,7 +28,7 @@ function App() {
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
             />
-            <PageComponent setCurrentPage={setCurrentPage} />
+            <div>{renderPage()}</div>
         </>
     );
 }

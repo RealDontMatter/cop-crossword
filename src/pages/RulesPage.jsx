@@ -1,4 +1,5 @@
 import { ThemeChanger } from "../components";
+import { SettingsPage } from ".";
 
 export function RulesPage({ setCurrentPage }) {
     return (
@@ -28,7 +29,12 @@ export function RulesPage({ setCurrentPage }) {
                 <div className="text-center mt-4">
                     <button
                         className="btn btn-primary"
-                        onClick={() => setCurrentPage("Settings")}
+                        onClick={() =>
+                            setCurrentPage({
+                                component: SettingsPage,
+                                props: {},
+                            })
+                        }
                     >
                         Back to Settings
                     </button>

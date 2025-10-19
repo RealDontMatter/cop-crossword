@@ -1,5 +1,6 @@
 import { GameField } from "../components";
 import { ThemeChanger } from "../components";
+import { ResultPage } from ".";
 
 export function GamePage({
     setCurrentPage,
@@ -17,7 +18,12 @@ export function GamePage({
                     <GameField chars={chars} />
                     <button
                         className={"btn btn-warning"}
-                        onClick={() => setCurrentPage("Result")}
+                        onClick={() =>
+                            setCurrentPage({
+                                component: ResultPage,
+                                props: { success: false },
+                            })
+                        }
                     >
                         Surrender
                     </button>

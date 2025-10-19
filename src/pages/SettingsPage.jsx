@@ -1,5 +1,6 @@
 import { ThemeChanger } from "../components";
 import { useState } from "react";
+import { GamePage, RulesPage } from ".";
 
 export function SettingsPage({ setCurrentPage }) {
     return (
@@ -10,7 +11,7 @@ export function SettingsPage({ setCurrentPage }) {
             <ThemeChanger />
             <form
                 action=""
-                className="p-4 rounded-3 d-flex flex-column gap-3 shadow settings-component"
+                className="p-5 rounded-3 d-flex flex-column gap-3 shadow settings-component"
             >
                 <div className={"d-flex gap-3"}>
                     <label htmlFor="name">Name</label>
@@ -46,7 +47,7 @@ export function SettingsPage({ setCurrentPage }) {
                         </label>
                         <label
                             htmlFor="difficulty-radio-hard"
-                            className={"rounded-2 p-2 "}
+                            className={"rounded-2 p-2"}
                         >
                             <input
                                 type="radio"
@@ -59,13 +60,23 @@ export function SettingsPage({ setCurrentPage }) {
                         </label>
                     </div>
                 </div>
-                <button className="btn btn-secondary">Start</button>
+                <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={() =>
+                        setCurrentPage({ component: GamePage, props: {} })
+                    }
+                >
+                    Start
+                </button>
                 <div>
                     Do not know rules? Check
                     <button
-                        type="submit"
+                        type="button"
                         className="text-decoration-underline bg-transparent border-0 text-primary"
-                        onClick={() => setCurrentPage("Rules")}
+                        onClick={() =>
+                            setCurrentPage({ component: RulesPage, props: {} })
+                        }
                     >
                         rules
                     </button>
