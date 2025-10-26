@@ -2,14 +2,13 @@
 }
 
 .game-container {
-    max-width: 500px;
 }
 
 /* Component */
 .game-field {
-    padding: 16px;
 
     input {
+        position: relative;
         outline: none;
         caret-color: transparent;
         cursor: default;
@@ -25,6 +24,10 @@
             background-color: #ff8807;
         }
     }
+}
+
+.game-hint {
+    color: var(--primary-text);
 }
 
 .wrong {

@@ -1,42 +1,57 @@
-import { GameField } from "../components";
-import { ThemeChanger } from "../components";
+import { GameField, ThemeChanger, HintContainer } from "../components";
 import { ResultPage } from ".";
+import {useRef, useState} from "react";
 
-export function GamePage({
-    setCurrentPage,
-    chars = ["C", "A", "T", "A", "C", "E", "T", "E", "X"],
-}) {
+const defaultGames = [
+    {
+        set: ["C", "A", "T", "A", "C", "E", "T", "E", "X"],
+        hints: ["Puffy friend", "Game Card", "Not correct word", "Puffy friend", "Game Card", "Not correct word"]
+    },
+    {
+        set: ["B", "O", "X", "O", "W", "L", "X", "L", "S"],
+        hints: ["A container", "Hooting bird", "Size indicator", "A container", "Hooting bird", "Size indicator"]
+    },
+    {
+        set: ["S", "U", "N", "A", "I", "R", "D", "A", "Y"],
+        hints: ["Shining star", "Breathable gas", "A calendar period", "A Feeling", "Ukraine Internation Airlines", "Not Rich Yet"]
+    },
+    {
+        set: ["H", "A", "T", "A", "N", "T", "T", "O", "P"],
+        hints: ["Headwear", "Small insect", "The highest point", "Headwear", "Small insect", "Trusted Traveler Programs"]
+    },
+]
+
+export function GamePage({ setCurrentPage, difficulty }) {
+    // Here must be some logic that defines difficulty, but for now Random set is selected
+    let gameIndex = Math.floor(Math.random()*defaultGames.length);
+    let startTime = new Date().getTime();
+
+    function onGameOver(win = true) {
+        let success = win;
+        let time = new Date().getTime() - startTime;
+        let difficulty = "easy"
+
+        setCurrentPage({ component:ResultPage, props: {success, time, difficulty} });
+    }
+
     return (
         <div
             id="game-page"
-            className="d-flex align-items-center justify-content-center vh-100 position-relative"
+            className="d-flex align-items-center justify-content-center min-vh-100 position-relative"
             style={{ background: "var(--primary-bg)" }}
         >
             <ThemeChanger />
-            <div className="game-container d-flex justify-content-center align-items-center rounded shadow p-4">
-                <div className="position-relative d-flex flex-column align-items-center">
-                    <GameField chars={chars} />
+            <div className="game-container d-flex justify-content-center align-items-center rounded shadow p-4 position-relative">
+                <div className="position-relative">
+                    <GameField answerSet={defaultGames[gameIndex].set} onSolve={onGameOver} />
                     <button
                         className={"btn btn-warning"}
-                        onClick={() =>
-                            setCurrentPage({
-                                component: ResultPage,
-                                props: { success: false },
-                            })
-                        }
+                        onClick={() => onGameOver(false)}
                     >
                         Surrender
                     </button>
                 </div>
-            </div>
-
-            <div className="hint-container d-flex justify-content-center align-items-center flex-column border border-2 gap-3 h5 py-2">
-                <div>
-                    <span className={"fw-bold"}>Right:</span> Puffy Friend
-                </div>
-                <div>
-                    <span className={"fw-bold"}>Bottom:</span> Vehicle?
-                </div>
+                <HintContainer hints={defaultGames[gameIndex].hints} />
             </div>
         </div>
     );
