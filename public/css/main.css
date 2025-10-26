@@ -18,19 +18,21 @@
     --secondary-text: gray;
 }
 
-#settings-page {
+.settings-page {
     background-color: var(--primary-bg);
-    .settings-component {
-        color: var(--primary-text);
-    }
+}
 
-    label:has(input[name="difficulty"]) {
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
-        background-color: #dadada;
-        cursor: pointer;
-    }
+.settings-component {
+    color: var(--primary-text);
+}
 
-    label:has(input[name="difficulty"]:checked) {
-        outline: 2px solid var(--bs-success);
-    }
+.settings-page input[name="difficulty"] + label {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+    background-color: #dadada;
+    color: var(--secondary-text);
+    cursor: pointer;
+}
+
+.settings-page input[name="difficulty"]:checked + label {
+    outline: 2px solid var(--bs-success);
 }
