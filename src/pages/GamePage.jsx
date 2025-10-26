@@ -1,4 +1,4 @@
-import { GameField, ThemeChanger, HintContainer } from "../components";
+import {GameField, ThemeChanger, HintContainer, WarningButton} from "../components";
 import { ResultPage } from ".";
 import {useRef, useState} from "react";
 import {useWarning} from "../hooks";
@@ -28,15 +28,13 @@ export function GamePage({ setCurrentPage, difficulty }) {
     let startTime = new Date().getTime();
 
     function onGameOver(win = true) {
-        let success = win;
-        let time = new Date().getTime() - startTime;
-        let difficulty = "easy"
-
-        setCurrentPage({ component:ResultPage, props: {success, time, difficulty} });
+        setCurrentPage({
+            component:ResultPage,
+            props: {success: win, time:(new Date().getTime() - startTime), difficulty}
+        });
     }
     function Surrender() { onGameOver(false); }
 
-    const [isSurrenderWarningVisible, handleSurrenderButtonClick] = useWarning(Surrender);
 
     return (
         <div
