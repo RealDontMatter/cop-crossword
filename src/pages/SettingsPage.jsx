@@ -1,6 +1,7 @@
 import { ThemeChanger } from "../components";
 import { useState } from "react";
 import { GamePage, RulesPage } from ".";
+import {useSettingsFormValidation} from "../hooks/index.jsx";
 
 export function SettingsPage({ setCurrentPage }) {
     const [difficulty, setDifficulty] = useState("");
@@ -15,20 +16,7 @@ export function SettingsPage({ setCurrentPage }) {
     const setRulesPage = () => setCurrentPage({ component: RulesPage, props: {} })
     const setGamePage = () => setCurrentPage({ component: GamePage, props: {difficulty} })
 
-
-    function validateForm() {
-        setNicknameWarningVisible(nickname === "");
-        setDifficultyWarningVisible(difficulty === "");
-
-        if (nickname === "") {
-            return;
-        }
-        if (difficulty === "") {
-            return;
-        }
-
-        setGamePage();
-    }
+    const [onValidation] = useSettingsFormValidation(difficulty, setDifficultyWarningVisible, nickname, setNicknameWarningVisible, setGamePage);
 
     return (
         <div className="settings-page min-vh-100 d-flex align-items-center justify-content-center position-relative">
@@ -89,7 +77,7 @@ export function SettingsPage({ setCurrentPage }) {
                 <button
                     type="button"
                     className="btn btn-secondary"
-                    onClick={validateForm}
+                    onClick={onValidation}
                 >
                     Start
                 </button>
