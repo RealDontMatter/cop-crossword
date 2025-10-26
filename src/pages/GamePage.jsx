@@ -48,11 +48,7 @@ export function GamePage({ setCurrentPage, difficulty }) {
             <div className="game-container d-flex justify-content-center align-items-center rounded shadow p-4 position-relative">
                 <div className="position-relative">
                     <GameField answerSet={defaultGames[gameIndex].set} onSolve={onGameOver} />
-
-                    <div className="d-flex gap-3 align-items-center mt-3">
-                        <button onClick={handleSurrenderButtonClick} className="btn btn-warning">Surrender</button>
-                        {isSurrenderWarningVisible && <div className="text-danger text-center">Are you sure?</div>}
-                    </div>
+                    <WarningButton text={"Surrender"} warningText={"Are you sure?"} onSuccess={Surrender}/>
                 </div>
                 <HintContainer hints={defaultGames[gameIndex].hints} />
             </div>
