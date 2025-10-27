@@ -1,32 +1,11 @@
-import {useRef, useState} from "react";
-import {useKeyPress} from "../hooks";
+import {useRef} from "react";
+import {useTableMove} from "../hooks";
 
 export function GameField({ answerSet, onSolve }) {
 
     let refs = useRef([]);
 
-    function MoveFocus(dx, dy){
-        let focusedInput = refs.current.find((input) => input === document.activeElement)
-        if(!focusedInput){
-            refs.current[0].focus();
-        }
-
-        let index = refs.current.indexOf(focusedInput);
-
-        let row = Math.floor(index / 3) + dy;
-        let col = index % 3 + dx;
-
-        if (row >= 3) row = 2;
-        if (col >= 3) col = 2;
-        if (row < 0) row = 0;
-        if (col < 0) col = 0;
-
-        refs.current[row * 3 + col].focus();
-    }
-    useKeyPress("ArrowUp", () => MoveFocus(0, -1))
-    useKeyPress("ArrowDown", () => MoveFocus(0, 1))
-    useKeyPress("ArrowLeft", () => MoveFocus(-1, 0))
-    useKeyPress("ArrowRight", () => MoveFocus(1, 0))
+    useTableMove(refs, 3, 3);
 
     function onInputChange(ev) {
         ev.preventDefault();
