@@ -1,16 +1,47 @@
-# React + Vite
+# Тема
+Варіант 14. Міні кросворд (Crossword 3×3)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Маленький кросворд, у якому є кілька коротких підказок для слів по горизонталі й вертикалі. Гравець вводить літери у клітинки, щоб правильно заповнити сітку. Гра завершується, коли всі слова заповнені правильно.
 
-Currently, two official plugins are available:
+# Лабораторна робота №1
+Зібрати каркас застосунку гри без бізнес-логіки та без роутингу: сторінки, базові стани-плейсхолдери, початкові стилі, чіткий поділ на компоненти.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Сторінки Старт, основна сторінка гри, сторінка результатів.
+Фокус на вірну структуру проєкту та перевикористання.
 
-## React Compiler
+Оцінка
+- вірний розподіл на компоненти 4 бали
+- вірна організація проєкту 2 бали
+- вірний розподіл на сторінки 2 бали
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# Лабораторна робота №2
+Додавання основної логіки за допомогою використання хуків.
 
-## Expanding the ESLint configuration
+Додати необхідний стан для кожної сторінки, а також додати логіку програми за допомогою кастомних хуків. Тобто наш компонент повинен залишатись максимально чистим.
+- Вірно створена логіка за допомогою хуків - 4 бали
+- Вірно створений стан сторінок (компонентів) - 4 бали
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Лабораторна робота №3
+Додати логіку налаштування гри (рівні складності, кількість елементів, швидкість і тд) за допомогою localStorage, локального стейту чи контексту. Обовʼязковою умовою є використання нескладної форми з yup/formik/react-hook-form чи аналогів. Також необхідно використати портали для створення діалогового вікна про завершення гри. Вікно включає інформацію про завершення гри і можливість розпочати наступний тур чи цей заново.
+
+Оцінка
+- Форма 4 бали
+- Портал 4 бали
+- Захист 4 бали
+
+# Лабораторна робота №4
+Стилізація, роутинг, стейт менеджмент
+
+Необхідно створити роутинг між сторінками. Роутинг з користувачем має бути динамічним (з використанням id користувача)
+Необхідно додати стилізацію нашого застосунку. Будь-яким із методів styled-components, Tailwind, Css модулі.
+
+- роутинг - 4 бали
+- стилізація - 4 бали
+
+# Лабораторна робота №5
+Необхідно організувати вірно роботу зі станом за допомогою одного з стейт менеджментів Redux Toolkit, Zustand, Recoil.
+
+Перевірка здійснюватиметься на сторінках Налаштування, а також Таблиця результатів.
+
+- Вірно організований стейт (модульний) - 8 балів
+- Захист 4 бали
