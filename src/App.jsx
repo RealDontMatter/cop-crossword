@@ -1,34 +1,18 @@
 import { useState } from "react";
-
-import { TmpPageSelector } from "./components";
-import { GamePage, SettingsPage, RulesPage, ResultPage } from "./pages";
-
-const pages = [
-    { name: "Settings", component: SettingsPage },
-    { name: "Rules", component: RulesPage },
-    { name: "Game", component: GamePage },
-    { name: "Result", component: ResultPage },
-];
+import { SettingsPage } from "./pages";
 
 function App() {
-    const [currentPage, setCurrentPage] = useState("Settings");
+    const [currentPage, setCurrentPage] = useState({
+        component: SettingsPage,
+        props: {},
+    });
 
-    // Settings -> Rules or Game -> Result
-    // Rules -> Settings
+    const renderPage = () => {
+        let { component: PageComponent, props } = currentPage;
+        return <PageComponent {...props} setCurrentPage={setCurrentPage} />;
+    };
 
-    const page = pages.find((p) => p.name === currentPage);
-    const PageComponent = page.component;
-
-    return (
-        <>
-            <TmpPageSelector
-                pages={pages}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-            />
-            <PageComponent setCurrentPage={setCurrentPage} />
-        </>
-    );
+    return <div>{renderPage()}</div>;
 }
 
 export default App;

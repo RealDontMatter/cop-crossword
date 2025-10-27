@@ -1,42 +1,99 @@
 import { ThemeChanger } from "../components";
+import { useState } from "react";
+import { GamePage, RulesPage } from ".";
+import {useSettingsFormValidation} from "../hooks/index.jsx";
 
 export function SettingsPage({ setCurrentPage }) {
+    const [difficulty, setDifficulty] = useState("");
+    const [nickname, setNickname] = useState("");
+    const [nicknameWarningVisible, setNicknameWarningVisible] = useState(false);
+    const [difficultyWarningVisible, setDifficultyWarningVisible] = useState(false);
+
+    // Form
+    const onNicknameChange = (e) => {setNickname(e.target.value);}
+    const onDifficultyChange = (e) => {setDifficulty(e.target.value);}
+
+    const setRulesPage = () => setCurrentPage({ component: RulesPage, props: {} })
+    const setGamePage = () => setCurrentPage({ component: GamePage, props: {difficulty} })
+
+    const [onValidation] = useSettingsFormValidation(difficulty, setDifficultyWarningVisible, nickname, setNicknameWarningVisible, setGamePage);
+
     return (
-        <div className="min-vh-100 d-flex align-items-center justify-content-center position-relative">
+        <div className="settings-page min-vh-100 d-flex align-items-center justify-content-center position-relative">
             <ThemeChanger />
-            <div className="p-4 rounded-3 d-flex align-items-center flex-column gap-3 shadow">
-                <h2 className="m-0">Choose Difficulty</h2>
+            <form className="p-5 rounded-3 d-flex flex-column gap-3 shadow settings-component">
                 <div className="d-flex gap-3">
-                    <button
-                        className="btn btn-success"
-                        onClick={() => setCurrentPage("Game")}
-                    >
-                        Easy
-                    </button>
-                    <button
-                        className="btn btn-warning"
-                        onClick={() => setCurrentPage("Game")}
-                    >
-                        Normal
-                    </button>
-                    <button
-                        className="btn btn-danger"
-                        onClick={() => setCurrentPage("Game")}
-                    >
-                        Hard
-                    </button>
+                    <label htmlFor="nickname">Nickname:</label>
+                    <input type="text" id="nickname" value={nickname} onChange={onNicknameChange} />
                 </div>
+                {nicknameWarningVisible && <div className="text-danger mb-3">Nickname cannot be empty</div>}
+
+                <div className="d-flex justify-content-center gap-3">
+                    <input
+                        type="radio"
+                        name="difficulty"
+                        value="easy"
+                        checked={difficulty === "easy"}
+                        id="difficulty-radio-easy"
+                        className="d-none"
+                        onChange={onDifficultyChange}
+                    />
+                    <label htmlFor="difficulty-radio-easy" className="rounded-2 p-2">
+                        Easy
+                    </label>
+
+                    <input
+                        type="radio"
+                        name="difficulty"
+                        value="normal"
+                        checked={difficulty === "normal"}
+                        id="difficulty-radio-normal"
+                        className="d-none"
+                        onChange={onDifficultyChange}
+                    />
+                    <label
+                        htmlFor="difficulty-radio-normal"
+                        className={"rounded-2 p-2"} >
+                        Normal
+                    </label>
+
+                    <input
+                        type="radio"
+                        name="difficulty"
+                        value="hard"
+                        checked={difficulty === "hard"}
+                        id="difficulty-radio-hard"
+                        className="d-none"
+                        onChange={onDifficultyChange}
+                    />
+                    <label
+                        htmlFor="difficulty-radio-hard"
+                        className={"rounded-2 p-2"} >
+                        Hard
+                    </label>
+                </div>
+                {difficultyWarningVisible && <div className="text-danger mb-3">Please choose difficulty</div>}
+
+                <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={onValidation}
+                >
+                    Start
+                </button>
+
                 <div>
                     Do not know rules? Check
                     <button
+                        type="button"
                         className="text-decoration-underline bg-transparent border-0 text-primary"
-                        onClick={() => setCurrentPage("Rules")}
+                        onClick={setRulesPage}
                     >
                         rules
                     </button>
                     page
                 </div>
-            </div>
+            </form>
         </div>
     );
 }

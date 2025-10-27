@@ -2,14 +2,13 @@
 }
 
 .game-container {
-    max-width: 500px;
 }
 
 /* Component */
 .game-field {
-    padding: 16px;
 
     input {
+        position: relative;
         outline: none;
         caret-color: transparent;
         cursor: default;
@@ -27,12 +26,8 @@
     }
 }
 
-.hint-container {
-    width: 300px;
-    bottom: 100px;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
+.game-hint {
+    color: var(--primary-text);
 }
 
 .wrong {
