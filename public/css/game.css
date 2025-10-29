@@ -24,6 +24,11 @@
             background-color: #ff8807;
         }
     }
+    max-width: 224px;
+    gap: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
 }
 
 .game-hint {
