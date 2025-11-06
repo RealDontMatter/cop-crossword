@@ -1,16 +1,21 @@
 import {GameField, ThemeChanger, HintContainer, WarningButton, Result} from "../components";
 import {getAnswerSet, getGameHints, selectRandomGame} from "../utility";
-import {useState} from "react";
+import {useContext, useState} from "react";
+import {AppContext} from "../AppContext.jsx";
 
 
 
-export function GamePage({ setCurrentPage, difficulty, startTime, gameIndex }) {
+export function GamePage({ setCurrentPage }) {
+    const {context, setContext} = useContext(AppContext);
     let [isResultShown, setIsResultShown] = useState(false);
-    let [win, setWin] = useState(false);
 
-    function onGameOver(win = true) {
+    function onGameOver(success = true) {
         setIsResultShown(true);
-        setWin(win);
+
+        let newContext = {...context};
+        newContext["success"] = success;
+        newContext["endTime"] = new Date().getTime();
+        setContext(newContext);
     }
     function Surrender() { onGameOver(false); }
 
@@ -25,15 +30,13 @@ export function GamePage({ setCurrentPage, difficulty, startTime, gameIndex }) {
                 <ThemeChanger />
                 <div className="game-container d-flex justify-content-center align-items-center rounded shadow p-4 position-relative">
                     <div className="position-relative">
-                        <GameField answerSet={getAnswerSet(gameIndex)} onSolve={onGameOver} />
+                        <GameField answerSet={getAnswerSet(context["gameIndex"])} onSolve={onGameOver} />
                         <WarningButton text={"Surrender"} warningText={"Are you sure?"} onSuccess={Surrender}/>
                     </div>
-                    <HintContainer hints={getGameHints(gameIndex)} />
+                    <HintContainer hints={getGameHints(context["gameIndex"])} />
                 </div>
             </div>
-            {isResultShown &&
-                <Result difficulty={difficulty} time={new Date().getTime() - startTime} setCurrentPage={setCurrentPage} success={win}/>
-            }
+            {isResultShown && <Result setCurrentPage={setCurrentPage}/>}
         </>
     );
 }

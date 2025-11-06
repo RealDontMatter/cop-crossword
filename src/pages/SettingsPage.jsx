@@ -1,10 +1,13 @@
 import { ThemeChanger } from "../components";
-import { useState } from "react";
+import {useContext, useState} from "react";
 import { GamePage, RulesPage } from ".";
 import {useSettingsFormValidation} from "../hooks/index.jsx";
 import {selectRandomGame} from "../utility/index.jsx";
+import {AppContext} from "../AppContext.jsx";
 
 export function SettingsPage({ setCurrentPage }) {
+    const {context, setContext} = useContext(AppContext);
+
     const [difficulty, setDifficulty] = useState("");
     const [nickname, setNickname] = useState("");
     const [nicknameWarningVisible, setNicknameWarningVisible] = useState(false);
@@ -15,7 +18,14 @@ export function SettingsPage({ setCurrentPage }) {
     const onDifficultyChange = (e) => {setDifficulty(e.target.value);}
 
     const setRulesPage = () => setCurrentPage({ component: RulesPage, props: {} })
-    const setGamePage = () => setCurrentPage({ component: GamePage, props: {difficulty, startTime: new Date().getTime(), gameIndex: selectRandomGame(difficulty) } })
+    const setGamePage = () => {
+        let newContext = {...context}
+        newContext["difficulty"] = difficulty;
+        newContext["startTime"] = new Date().getTime();
+        newContext["gameIndex"] = selectRandomGame(difficulty);
+        setContext(newContext);
+        setCurrentPage({ component: GamePage, props: {} })
+    }
 
     const [onValidation] = useSettingsFormValidation(difficulty, setDifficultyWarningVisible, nickname, setNicknameWarningVisible, setGamePage);
 
