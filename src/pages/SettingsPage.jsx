@@ -2,6 +2,7 @@ import { ThemeChanger } from "../components";
 import { useState } from "react";
 import { GamePage, RulesPage } from ".";
 import {useSettingsFormValidation} from "../hooks/index.jsx";
+import {selectRandomGame} from "../utility/index.jsx";
 
 export function SettingsPage({ setCurrentPage }) {
     const [difficulty, setDifficulty] = useState("");
@@ -14,7 +15,7 @@ export function SettingsPage({ setCurrentPage }) {
     const onDifficultyChange = (e) => {setDifficulty(e.target.value);}
 
     const setRulesPage = () => setCurrentPage({ component: RulesPage, props: {} })
-    const setGamePage = () => setCurrentPage({ component: GamePage, props: {difficulty} })
+    const setGamePage = () => setCurrentPage({ component: GamePage, props: {difficulty, startTime: new Date().getTime(), gameIndex: selectRandomGame(difficulty) } })
 
     const [onValidation] = useSettingsFormValidation(difficulty, setDifficultyWarningVisible, nickname, setNicknameWarningVisible, setGamePage);
 
