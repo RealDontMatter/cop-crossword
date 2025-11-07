@@ -1,6 +1,7 @@
 import {createRef, useState} from "react";
 import {useTableMove} from "../hooks";
 import {GameTile} from ".";
+import {checkGameSet} from "../utility";
 
 export function GameField({ answerSet, onSolve }) {
     const rows = 3;
@@ -16,18 +17,14 @@ export function GameField({ answerSet, onSolve }) {
 
     const [set, setSet] = useState(Array(9).fill(""));
 
-    let win = true;
-    set.forEach((value, index) => {
-        if (value !== answerSet[index]) {
-            win = false;
-        }
-    })
-    if(win) onSolve();
 
     function setValue(index, value) {
         let newSet = [...set];
         newSet[index] = value;
         setSet(newSet);
+
+        if(checkGameSet(newSet, answerSet))
+            onSolve();
     }
 
     return (
