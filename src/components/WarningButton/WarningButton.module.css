@@ -1,0 +1,16 @@
+.warningContainer {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.warningButton {
+    padding: 10px 20px;
+    background-color: #f4af56;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+}
+.warning {
+    color: #d00;
+    font-size: 16px;
+}

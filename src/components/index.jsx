@@ -1,8 +1,6 @@
-import { GameField } from "./GameField.jsx";
-import { ThemeChanger } from "./ThemeChanger.jsx";
-import { HintContainer } from "./HintContainer.jsx";
-
-export { GameField, ThemeChanger, HintContainer };
-export {WarningButton} from "./WarningButton.jsx"
-export {GameTile} from "./GameTile.jsx"
-export {Result} from "./Result.jsx"
+export {GameField} from "./GameField/GameField.jsx";
+export {ThemeChanger} from "./ThemeChanger/ThemeChanger.jsx";
+export {HintContainer} from "./HintContainer/HintContainer.jsx";
+export {WarningButton} from "./WarningButton/WarningButton.jsx"
+export {GameTile} from "./GameTile/GameTile.jsx"
+export {Result} from "./Result/Result.jsx"

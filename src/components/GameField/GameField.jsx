@@ -1,7 +1,8 @@
 import {createRef, useState} from "react";
-import {useTableMove} from "../hooks";
-import {GameTile} from ".";
-import {checkGameSet} from "../utility";
+import {useTableMove} from "../../hooks";
+import {GameTile} from "..";
+import {checkGameSet} from "../../utility";
+import styles from "./GameField.module.css";
 
 export function GameField({ answerSet, onSolve }) {
     const rows = 3;
@@ -28,7 +29,7 @@ export function GameField({ answerSet, onSolve }) {
     }
 
     return (
-        <div className="game-field">
+        <div className={styles.field}>
             {tileRefs.map((ref, index) => {
                 return (
                     <GameTile
@@ -42,12 +43,12 @@ export function GameField({ answerSet, onSolve }) {
                 )
             })}
 
-            <div className="position-absolute end-100 top-0 game-hint">1</div>
-            <div className="position-absolute end-100 top-50 game-hint">2</div>
-            <div className="position-absolute end-100 bottom-0 game-hint">3</div>
-            <div className="position-absolute bottom-100 start-0 game-hint">4</div>
-            <div className="position-absolute bottom-100 start-50 game-hint">5</div>
-            <div className="position-absolute bottom-100 end-0 game-hint">6</div>
+            <div className={styles.hint}>1</div>
+            <div className={styles.hint}>2</div>
+            <div className={styles.hint}>3</div>
+            <div className={styles.hint}>4</div>
+            <div className={styles.hint}>5</div>
+            <div className={styles.hint}>6</div>
 
         </div>
     );

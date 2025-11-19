@@ -1,0 +1,23 @@
+.page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+    background-color: var(--primary-bg);
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px 40px 30px;
+    position: relative;
+    border: 1px solid var(--primary-text);
+    border-radius: 10px;
+    position: relative;
+
+}
+
+.positionRelative {
+    position: relative;
+}

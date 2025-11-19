@@ -1,0 +1,21 @@
+.tile {
+    position: relative;
+    outline: none;
+    caret-color: transparent;
+    cursor: default;
+    font-family: monospace;
+    font-size: 40px;
+    width: 64px;
+    height: 64px;
+    border-radius: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    &:focus {
+        border: #85470c 5px solid;
+        background-color: #ff8807;
+    }
+}
+
+.wrong {
+    background: red !important;
+}
