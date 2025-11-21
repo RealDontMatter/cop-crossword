@@ -32,12 +32,14 @@
 .return {
     text-align: center;
     margin-top: 20px;
-    button {
+    a {
+        display: block;
         cursor: pointer;
         padding: 12px 20px;
         border: none;
         background-color: #00e;
         border-radius: 0.7rem;
+        text-decoration: none;
         color: #fff;
         transition-duration: 0.3s;
         font-size: 20px;

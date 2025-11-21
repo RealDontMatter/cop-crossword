@@ -1,9 +1,8 @@
 import { ThemeChanger } from "../../components";
-import { SettingsPage } from "..";
 import styles from "./RulesPage.module.css"
+import { Link } from "react-router";
 
-export function RulesPage({ setCurrentPage }) {
-    const setSettingsPage = () =>setCurrentPage( { component: SettingsPage, props: {} })
+export function RulesPage() {
     return (
         <div className={styles.page}>
             <ThemeChanger />
@@ -26,9 +25,7 @@ export function RulesPage({ setCurrentPage }) {
                     </li>
                 </ul>
                 <div className={styles.return}>
-                    <button onClick={setSettingsPage}>
-                        Back to Settings
-                    </button>
+                    <Link to="/" >Back to Settings</Link>
                 </div>
             </div>
         </div>

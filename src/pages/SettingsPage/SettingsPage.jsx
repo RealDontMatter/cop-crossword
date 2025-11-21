@@ -1,26 +1,19 @@
 import { ThemeChanger } from "../../components";
-import {useContext, useState} from "react";
-import { GamePage, RulesPage } from "../";
+import {useContext} from "react";
 import {selectRandomGame} from "../../utility";
 import {AppContext} from "../../AppContext.jsx";
 import {useForm} from "react-hook-form";
 import styles from "./SettingsPage.module.css"
+import { useNavigate, Link } from "react-router";
 
-export function SettingsPage({ setCurrentPage }) {
-    const {context, setContext} = useContext(AppContext);
+export function SettingsPage() {
+    const navigate = useNavigate();
 
     const {register, formState:{errors}, handleSubmit} = useForm();
     function onSubmit(data) {
-        console.log(data);
-        let newContext = {...context}
-        newContext["difficulty"] = data["difficulty"];
-        newContext["startTime"] = new Date().getTime();
-        newContext["gameIndex"] = selectRandomGame(data["difficulty"]);
-        setContext(newContext);
-        setCurrentPage({ component: GamePage, props: {} })
+        navigate(`/game/${data["nickname"]}/${data["difficulty"]}`);
     }
 
-    const setRulesPage = () => setCurrentPage({ component: RulesPage, props: {} })
 
     return (
         <div className={styles.page}>
@@ -81,12 +74,9 @@ export function SettingsPage({ setCurrentPage }) {
                 <div className={styles.rulesBox}>
                     Do not know rules? Check
                     {' '}
-                    <button
-                        type="button"
-                        onClick={setRulesPage}
-                    >
+                    <Link to="/rules">
                         rules
-                    </button>
+                    </Link>
                     {' '}
                     page
                 </div>

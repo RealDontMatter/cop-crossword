@@ -1,21 +1,31 @@
 import {GameField, ThemeChanger, HintContainer, WarningButton, Result} from "../../components";
-import {getAnswerSet, getGameHints} from "../../utility";
-import {useContext, useState} from "react";
-import {AppContext} from "../../AppContext.jsx";
+import {getAnswerSet, getGameHints, selectRandomGame} from "../../utility";
+import {useState} from "react";
 import styles from "./GamePage.module.css";
+import { useParams } from "react-router";
 
+const initialGameState = (difficulty) => ({
+    gameIndex: selectRandomGame(difficulty),
+    startTime: new Date().getTime(),
+    success: false
+});
 
-export function GamePage({ setCurrentPage }) {
-    const {context, setContext} = useContext(AppContext);
-    let [isResultShown, setIsResultShown] = useState(false);
+export function GamePage() {
+    const {nickname, difficulty} = useParams();
 
+    const [isResultShown, setIsResultShown] = useState(false);
+    const [gameStage, setGameStage] = useState(() => initialGameState(difficulty))
+
+    function playAgain() {
+        setGameStage(initialGameState(difficulty));
+        setIsResultShown(false);
+    }
     function onGameOver(success = true) {
+        setGameStage((prevGame) => ({
+            ...prevGame,
+            success: success
+        }));
         setIsResultShown(true);
-
-        let newContext = {...context};
-        newContext["success"] = success;
-        newContext["endTime"] = new Date().getTime();
-        setContext(newContext);
     }
     function Surrender() { onGameOver(false); }
 
@@ -25,12 +35,12 @@ export function GamePage({ setCurrentPage }) {
             <div className={styles.page} >
                 <ThemeChanger />
                 <div className={styles.container}>
-                    <GameField answerSet={getAnswerSet(context["gameIndex"])} onSolve={onGameOver} />
+                    <GameField answerSet={getAnswerSet(gameStage.gameIndex)} onSolve={onGameOver} key={new Date().getTime()} />
                     <WarningButton text={"Surrender"} warningText={"Are you sure?"} onSuccess={Surrender}/>
-                    <HintContainer hints={getGameHints(context["gameIndex"])} />
+                    <HintContainer hints={getGameHints(gameStage.gameIndex)} />
                 </div>
             </div>
-            {isResultShown && <Result setCurrentPage={setCurrentPage}/>}
+            {isResultShown && <Result difficulty={difficulty} success={gameStage.success} time={new Date().getTime() - gameStage.startTime} playAgain={playAgain} />}
         </>
     );
 }

@@ -80,7 +80,7 @@
     display: flex;
     white-space: pre;
     font-size: 16px;
-    button {
+    a {
         text-decoration: underline;
         background-color: transparent;
         border: none;
