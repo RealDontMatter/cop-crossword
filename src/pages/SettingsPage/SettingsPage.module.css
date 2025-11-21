@@ -1,0 +1,93 @@
+.page {
+    background-color: var(--primary-bg);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.container {
+    color: var(--primary-text);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 1px solid var(--primary-text);
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.nicknameBox {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    label {
+        font-size: 16px;
+    }
+    input {
+        font-size: 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        &:focus {
+            cursor: text;
+        }
+    }
+}
+
+
+.difficultyBox {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    .difficultyTitle {
+        font-size: 16px;
+    }
+    .difficultyOptions {
+        display: flex;
+        gap: 10px;
+
+    }
+    input {
+        display: none;
+    }
+    input + label {
+        background-color: #dadada;
+        color: var(--secondary-text);
+        cursor: pointer;
+        border-radius: 10px;
+        padding: 8px 12px;
+    }
+    input:checked + label {
+        outline: 2px solid #0a0;
+    }
+}
+
+.submit {
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition-duration: 0.3s;
+    cursor: pointer;
+    border: none;
+    color: white;
+    font-size: 20px;
+    background-color: #00e;
+    &:hover {
+        background-color: #00b;
+    }
+}
+
+.rulesBox {
+    display: flex;
+    white-space: pre;
+    font-size: 16px;
+    a {
+        text-decoration: underline;
+        background-color: transparent;
+        border: none;
+        color: #00b;
+        cursor: pointer;
+    }
+}
+.warning {
+    color: #d00;
+}

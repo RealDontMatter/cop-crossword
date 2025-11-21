@@ -1,5 +1,3 @@
-import { GamePage } from "./GamePage";
-import { SettingsPage } from "./SettingsPage";
-import { RulesPage } from "./RulesPage";
-
-export { GamePage, SettingsPage, RulesPage };
+export { GamePage } from "./GamePage/GamePage.jsx";
+export { SettingsPage } from "./SettingsPage/SettingsPage.jsx";
+export { RulesPage } from "./RulesPage/RulesPage.jsx";

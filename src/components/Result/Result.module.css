@@ -1,0 +1,50 @@
+.page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+
+.container {
+    background-color: var(--primary-bg);
+    color: var(--primary-text);
+    padding: 40px;
+    border-radius: 10px;
+    border: 1px solid var(--primary-text);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.buttonsBlock {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+
+    button, a {
+        cursor: pointer;
+        font-size: 20px;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        background-color: #00e;
+        border: none;
+        color: white;
+        border-radius: 0.2rem;
+    }
+}
+
+
+.lead {
+    font-weight: 300;
+    font-size: 1.25rem;
+}
+.bold {
+    font-weight: bold;
+}
