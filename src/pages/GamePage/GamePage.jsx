@@ -3,6 +3,7 @@ import {getAnswerSet, getGameHints, selectRandomGame} from "../../utility";
 import {useState} from "react";
 import styles from "./GamePage.module.css";
 import { useParams } from "react-router";
+import { ModalLayout } from "../../components/ModalLayout/ModalLayout.jsx";
 
 const initialGameState = (difficulty) => ({
     gameIndex: selectRandomGame(difficulty),
@@ -40,7 +41,14 @@ export function GamePage() {
                     <HintContainer hints={getGameHints(gameStage.gameIndex)} />
                 </div>
             </div>
-            {isResultShown && <Result difficulty={difficulty} success={gameStage.success} time={new Date().getTime() - gameStage.startTime} playAgain={playAgain} />}
+            <ModalLayout isOpen={isResultShown}>
+                <Result
+                    difficulty={difficulty}
+                    success={gameStage.success}
+                    time={new Date().getTime() - gameStage.startTime}
+                    playAgain={playAgain}
+                />
+            </ModalLayout>
         </>
     );
 }
