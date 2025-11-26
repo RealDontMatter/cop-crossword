@@ -1,4 +1,4 @@
-import {createRef, useState} from "react";
+import { createRef, useRef, useState } from "react";
 import {useTableMove} from "../../hooks";
 import {GameTile} from "..";
 import {checkGameSet} from "../../utility";
@@ -15,17 +15,13 @@ export function GameField({ answerSet, onSolve }) {
     );
     useTableMove(tileRefs, 3, 3);
 
-
     const [set, setSet] = useState(Array(9).fill(""));
-
 
     function setValue(index, value) {
         let newSet = [...set];
         newSet[index] = value;
         setSet(newSet);
-
-        if(checkGameSet(newSet, answerSet))
-            onSolve();
+        if(checkGameSet(newSet, answerSet)) onSolve();
     }
 
     return (
@@ -37,19 +33,17 @@ export function GameField({ answerSet, onSolve }) {
                         value={set[index]}
                         setValue={setValue}
                         correctValue={answerSet[index]}
-                        ref={ref}
                         index={index}
+                        elRef={(el) => {tileRefs[index] = el;}}
                     />
                 )
             })}
-
             <div className={styles.hint}>1</div>
             <div className={styles.hint}>2</div>
             <div className={styles.hint}>3</div>
             <div className={styles.hint}>4</div>
             <div className={styles.hint}>5</div>
             <div className={styles.hint}>6</div>
-
         </div>
     );
 }

@@ -3,9 +3,9 @@ import {useKeyPress} from "./useKeyPress.jsx";
 export function useTableMove(refs, cols, rows) {
 
     function MoveFocus(dx, dy){
-        let focusedInput = refs.find((ref) => ref.current === document.activeElement)
+        let focusedInput = refs.find((el) => el === document.activeElement)
         if(!focusedInput){
-            refs[0].current.focus();
+            refs[0].focus();
         }
         let index = refs.indexOf(focusedInput);
 
@@ -17,7 +17,7 @@ export function useTableMove(refs, cols, rows) {
         if (row < 0) row = 0;
         if (col < 0) col = 0;
 
-        refs[row * 3 + col].current.focus();
+        refs[row * 3 + col].focus();
     }
     useKeyPress("ArrowUp", () => MoveFocus(0, -1))
     useKeyPress("ArrowDown", () => MoveFocus(0, 1))

@@ -1,7 +1,6 @@
-import {forwardRef, useRef} from "react";
 import styles from "./GameTile.module.css";
 
-export const GameTile = forwardRef(function GameTile({index, value, setValue, correctValue}, ref) {
+export function GameTile({index, value, setValue, correctValue, elRef}) {
     let wrong = value !== correctValue && value !== "";
 
     function onInputChange(ev) {
@@ -18,7 +17,7 @@ export const GameTile = forwardRef(function GameTile({index, value, setValue, co
             onChange={onInputChange}
             value={value}
             className={`${styles.tile} ${wrong && styles.wrong}`}
-            ref={ref}
+            ref={elRef}
         />
     )
-})
+}
