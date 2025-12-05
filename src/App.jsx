@@ -1,14 +1,20 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import { SettingsPage, RulesPage, GamePage } from "./pages";
-import {AppContext} from "./AppContext.jsx"
+import {ThemeContext} from "./ThemeContext.jsx"
 import { BrowserRouter, Route, Routes } from "react-router";
 
 function App() {
-    const [context, setContext] = useState({});
+    const [theme, setTheme] = useState("light");
 
+    useEffect(()=> {
+        if (theme == "light")
+            document.body.classList.remove("dark-theme");
+        else
+            document.body.classList.add("dark-theme");
+    }, [theme]);
 
     return (
-        <AppContext.Provider value={{context, setContext}}>
+        <ThemeContext value={{theme, setTheme}}>
             <BrowserRouter>
                 <Routes>
                     <Route index element={<SettingsPage/>} />
@@ -16,7 +22,7 @@ function App() {
                     <Route path="/game/:nickname/:difficulty" element={<GamePage key={new Date().getTime()}/>} />
                 </Routes>
             </BrowserRouter>
-        </AppContext.Provider>
+        </ThemeContext>
     );
 }
 
