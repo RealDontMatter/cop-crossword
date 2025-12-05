@@ -1,32 +1,16 @@
-import {createRef, useState} from "react";
+import {createRef, useRef} from "react";
 import {useTableMove} from "../../hooks";
 import {GameTile} from "..";
-import {checkGameSet} from "../../utility";
 import styles from "./GameField.module.css";
 
-export function GameField({ answerSet, onSolve }) {
-    const rows = 3;
-    const cols = 3;
-    const tileCount = rows * cols;
-
+export function GameField() {
+    // Navigation though table using arrow keys
     let tileRefs = [];
-    tileRefs = Array(tileCount).fill().map(
+    tileRefs = Array(9).fill().map(
         (_, i) => tileRefs[i] || createRef()
     );
     useTableMove(tileRefs, 3, 3);
 
-
-    const [set, setSet] = useState(Array(9).fill(""));
-
-
-    function setValue(index, value) {
-        let newSet = [...set];
-        newSet[index] = value;
-        setSet(newSet);
-
-        if(checkGameSet(newSet, answerSet))
-            onSolve();
-    }
 
     return (
         <div className={styles.field}>
@@ -34,22 +18,16 @@ export function GameField({ answerSet, onSolve }) {
                 return (
                     <GameTile
                         key={index}
-                        value={set[index]}
-                        setValue={setValue}
-                        correctValue={answerSet[index]}
-                        ref={ref}
                         index={index}
+                        elRef={(el) => {tileRefs[index] = el;}}
                     />
                 )
             })}
-
-            <div className={styles.hint}>1</div>
-            <div className={styles.hint}>2</div>
-            <div className={styles.hint}>3</div>
-            <div className={styles.hint}>4</div>
-            <div className={styles.hint}>5</div>
-            <div className={styles.hint}>6</div>
-
+            {
+                [1,2,3,4,5,6].map((value) => (
+                    <div className={styles.hint} key={value}>{value}</div>
+                )) 
+            }
         </div>
     );
 }

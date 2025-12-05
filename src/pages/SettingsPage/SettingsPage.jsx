@@ -1,7 +1,4 @@
 import { ThemeChanger } from "../../components";
-import {useContext} from "react";
-import {selectRandomGame} from "../../utility";
-import {AppContext} from "../../AppContext.jsx";
 import {useForm} from "react-hook-form";
 import styles from "./SettingsPage.module.css"
 import { useNavigate, Link } from "react-router";

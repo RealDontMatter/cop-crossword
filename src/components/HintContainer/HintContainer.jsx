@@ -1,6 +1,11 @@
+import { useGameStore } from "../../store";
+import { getGameHints } from "../../utility";
 import styles from "./HintContainer.module.css"
 
-export function HintContainer({ hints }) {
+export function HintContainer() {
+    const gameIndex = useGameStore(state => state.gameIndex);
+    const hints = getGameHints(gameIndex);
+
     return (
         <div className={styles.container}>
             {hints.map((value, index) => {

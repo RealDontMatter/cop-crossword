@@ -1,21 +1,11 @@
-.page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    position: fixed;
-    top: 0;
-    left: 0;
-}
-
-
-.container {
+.card {
     background-color: var(--primary-bg);
     color: var(--primary-text);
     padding: 40px;
     border-radius: 10px;
     border: 1px solid var(--primary-text);
+    margin: auto 0;
+    align-self: center;
     text-align: center;
     display: flex;
     flex-direction: column;
