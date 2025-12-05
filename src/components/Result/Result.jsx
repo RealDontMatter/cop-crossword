@@ -1,9 +1,16 @@
 import {convertTime} from "../../utility";
-import {createPortal} from "react-dom";
 import styles from "./Result.module.css"
 import { Link } from "react-router";
+import { useGameStore } from "../../store";
 
-export function Result({success, time, difficulty, playAgain}) {
+export function Result({difficulty}) {
+
+    const success = useGameStore(state => state.status) == "success";
+    const time = useGameStore(state => state.endTime - state.startTime);
+    const startGame = useGameStore(state => state.startGame);
+    
+    const playAgain = () => startGame(difficulty);
+
     return (
         <div className={styles.card}>
             <h2>Game Results</h2>
