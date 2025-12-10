@@ -1,5 +1,6 @@
 import { create } from "zustand/react";
 import { getAnswerSet, selectRandomGame } from "../utility";
+import { useStatisticsStore, useSettingsStore } from ".";
 
 export const useGameStore = create((set, get) => ({
     gameIndex: null,
@@ -10,7 +11,8 @@ export const useGameStore = create((set, get) => ({
     status: "game",
 
 
-    startGame: (difficulty) => {
+    startGame: () => {
+        const difficulty = useSettingsStore.getState().difficulty;
         const index = selectRandomGame(difficulty);
         const answers = getAnswerSet(index);
 
@@ -26,14 +28,28 @@ export const useGameStore = create((set, get) => ({
         let newSet = [...get().gameSet];
         let answers = [...get().answerSet]
         newSet[index] = value;
+
         const isWin = newSet.every((val, i) => val === answers[i]);
-        if (isWin)
-            set({gameSet: newSet, status: "success", endTime: new Date().getTime()});
+        
+        if (isWin) {
+            const recordGame = useStatisticsStore.getState().recordGame;
+            const startTime = get().startTime;
+            const endTime = new Date().getTime();
+            const difficulty = useSettingsStore.getState().difficulty;
+
+            recordGame("success", endTime - startTime);
+            set({gameSet: newSet, status: "success", endTime});
+        }
         else
             set({gameSet: newSet});
     },
     surrender: () => {
-        set({status: "surrender", endTime: new Date().getTime()})
+        const recordGame = useStatisticsStore.getState().recordGame;
+        const startTime = get().startTime;
+        const endTime = new Date().getTime();
+        const difficulty = useSettingsStore.getState().difficulty;
+        recordGame("surrender", endTime -  startTime);
+        set({status: "surrender", endTime})
     }
 
 }));
