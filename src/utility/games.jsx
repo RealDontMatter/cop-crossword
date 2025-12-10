@@ -1,4 +1,10 @@
 
+export const difficulties = {
+    easy: "easy",
+    normal: "normal",
+    hard: "hard"
+}
+
 export const games = [
     {
         // R1: COT, R2: ALL, R3: WEB
@@ -12,7 +18,7 @@ export const games = [
             "Cheer in Spanish",
             "The body's memory buffer (Initials)"
         ],
-        difficulty: "easy"
+        difficulty: difficulties.easy
     },
     {
         // R1: TIN, R2: ARE, R3: PET
@@ -26,7 +32,7 @@ export const games = [
             "Intense anger",
             "Fishing gear"
         ],
-        difficulty: "easy"
+        difficulty: difficulties.easy
     },
     {
         // R1: M O O, R2: O I L, R3: A C T
@@ -40,7 +46,7 @@ export const games = [
             "Organization of Islamic Cooperation (Initials)",
             "A young male horse"
         ],
-        difficulty: "normal"
+        difficulty: difficulties.normal
     },
     {
         // R1: S E T, R2: A R T, R3: T E A
@@ -54,7 +60,7 @@ export const games = [
             "Environmental response team (Initials)",
             "Telecommunications Technology Association (Initials)"
         ],
-        difficulty: "normal"
+        difficulty: difficulties.normal
     },
     {
         // R1: B A T, R2: I C E, R3: D O T
@@ -68,7 +74,7 @@ export const games = [
             "African regional cooperation body (Initials)",
             "Vietnamese New Year"
         ],
-        difficulty: "hard"
+        difficulty: difficulties.hard
     },
     {
         // R1: H A M, R2: A P E, R3: M E T (Symmetrical, but works)
@@ -82,7 +88,7 @@ export const games = [
             "Primate",
             "Encountered"
         ],
-        difficulty: "hard"
+        difficulty: difficulties.hard
     },
     {
         // R1: W I N, R2: O N E, R3: W E T
@@ -96,7 +102,7 @@ export const games = [
             "Suffix meaning 'related to'",
             "A zero-emissions vehicle (Initials)"
         ],
-        difficulty: "easy"
+        difficulty: difficulties.easy
     },
     {
         // R1: T R Y, R2: A D O, R3: T A G
@@ -110,7 +116,7 @@ export const games = [
             "Recommended dietary allowance (Initials)",
             "Yogurt, informally"
         ],
-        difficulty: "normal"
+        difficulty: difficulties.normal
     },
     {
         // R1: C U P, R2: A L E, R3: B O Y
@@ -125,7 +131,7 @@ export const games = [
             "Verb 'to exist'",
             "Past tense of 'do'"
         ],
-        difficulty: "normal"
+        difficulty: difficulties.normal
     },
     {
         // R1: M A N, R2: E R A, R3: N E W
@@ -139,7 +145,7 @@ export const games = [
             "Unit of land area",
             "To bite persistently"
         ],
-        difficulty: "hard"
+        difficulty: difficulties.hard
     },
 ]
 
@@ -149,7 +155,6 @@ export function selectRandomGame(difficulty) {
         if(game.difficulty === difficulty)
             gamesByDifficulty.push(index)
     })
-    console.log(gamesByDifficulty)
     let randomGame = Math.floor(Math.random() * gamesByDifficulty.length);
     return gamesByDifficulty[randomGame];
 }

@@ -1,15 +1,16 @@
+import { Link } from "react-router";
 import {convertTime} from "../../utility";
 import styles from "./Result.module.css"
-import { Link } from "react-router";
-import { useGameStore } from "../../store";
+import { useGameStore, useSettingsStore, useStatisticsStore } from "../../store";
+import { StatisticTable } from "../";
 
-export function Result({difficulty}) {
+export function Result() {
 
     const success = useGameStore(state => state.status) == "success";
     const time = useGameStore(state => state.endTime - state.startTime);
     const startGame = useGameStore(state => state.startGame);
-    
-    const playAgain = () => startGame(difficulty);
+    const history = useStatisticsStore(state => state.getSlice)(0, 5);
+    const difficulty = useSettingsStore(state => state.difficulty);
 
     return (
         <div className={styles.card}>
@@ -27,10 +28,11 @@ export function Result({difficulty}) {
                 <Link to="/">
                     Go to Settings
                 </Link>
-                <button onClick={playAgain}>
+                <button onClick={startGame}>
                     Play Again
                 </button>
             </div>
+            <StatisticTable />
         </div>
     );
 }

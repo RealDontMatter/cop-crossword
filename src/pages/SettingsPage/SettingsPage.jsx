@@ -1,7 +1,9 @@
 import { ThemeChanger } from "../../components";
+import {difficulties} from "../../utility"
 import {useForm} from "react-hook-form";
 import styles from "./SettingsPage.module.css"
 import { useNavigate, Link } from "react-router";
+import {Fragment} from "react"
 
 export function SettingsPage() {
     const navigate = useNavigate();
@@ -11,6 +13,7 @@ export function SettingsPage() {
         navigate(`/game/${data["nickname"]}/${data["difficulty"]}`);
     }
 
+    const difficultyValidation = (value) => Object.values(difficulties).includes(value);
 
     return (
         <div className={styles.page}>
@@ -21,42 +24,34 @@ export function SettingsPage() {
             >
                 <div className={styles.nicknameBox}>
                     <label htmlFor="nickname">Nickname</label>
-                    <input type="text" id="nickname" {...register("nickname", {required: true})} />
-                    { errors["nickname"] && <div className={styles.warning}>Nickname cannot be empty</div> }
+                    <input 
+                        type="text" 
+                        id="nickname" 
+                        {...register("nickname", {required: true, minLength:4, maxLength:20, })} 
+                    />
+                    { errors["nickname"] && <div className={styles.warning}>Nickname has to be at least 4 characters and less than 20 characters</div> }
                 </div>
 
                 <div className={styles.difficultyBox}>
                     <div className={styles.difficultyTitle}>Difficulty</div>
                     <div className={styles.difficultyOptions}>
-                        <input
-                            type="radio"
-                            id="difficulty-radio-easy"
-                            value="easy"
-                            {...register("difficulty", {required: true})}
-                        />
-                        <label htmlFor="difficulty-radio-easy">
-                            Easy
-                        </label>
-
-                        <input
-                            type="radio"
-                            id="difficulty-radio-normal"
-                            value="normal"
-                            {...register("difficulty", {required: true})}
-                        />
-                        <label htmlFor="difficulty-radio-normal">
-                            Normal
-                        </label>
-
-                        <input
-                            type="radio"
-                            id="difficulty-radio-hard"
-                            value="hard"
-                            {...register("difficulty", {required: true})}
-                        />
-                        <label htmlFor="difficulty-radio-hard">
-                            Hard
-                        </label>
+                        {
+                            Object.values(difficulties).map((value) => {
+                                return (
+                                    <Fragment key={value}>
+                                        <input
+                                            type="radio"
+                                            id={`difficulty-radio-${value}`}
+                                            value={value}
+                                            {...register("difficulty", {required: true, validate: difficultyValidation})} 
+                                        />
+                                        <label htmlFor={`difficulty-radio-${value}`} >
+                                            {value}
+                                        </label>
+                                    </Fragment>
+                                );
+                            })
+                        }
                     </div>
                     { errors["difficulty"] && <div className={styles.warning}>Please choose difficulty</div> }
                 </div>

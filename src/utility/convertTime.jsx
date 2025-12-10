@@ -1,6 +1,5 @@
 
 export function convertTime(ms) {
-    console.log(ms)
     let s = Math.floor(ms / 1000);
 
     if (s < 60) {

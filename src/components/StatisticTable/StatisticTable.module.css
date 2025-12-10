@@ -1,0 +1,115 @@
+/* StatisticTable.module.css */
+
+.container {
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    max-width: 700px;
+    margin: 30px auto;
+}
+
+.h2 {
+    font-size: 2em;
+    color: #333;
+    border-bottom: 3px solid #007bff; /* Primary color line */
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 20px;
+    font-size: 0.95em;
+    overflow: hidden; /* For rounded corners on the table */
+}
+
+.th, .td {
+    padding: 14px 15px;
+    text-align: left;
+    /* Remove default table borders and use border-spacing */
+    border: none;
+}
+
+.th {
+    background-color: #007bff; /* Blue header */
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* Apply rounded corners to the first and last header cells */
+.th:first-child {
+    border-top-left-radius: 8px;
+}
+.th:last-child {
+    border-top-right-radius: 8px;
+}
+
+.tr:nth-child(odd) {
+    background-color: #f7f7f7;
+}
+
+.tr:hover {
+    background-color: #e9ecef;
+    transition: background-color 0.2s ease;
+}
+
+.td {
+    border-bottom: 1px solid #e0e0e0; /* Light line between rows */
+    color: #495057;
+}
+
+/* Specific styling for data columns */
+.duration {
+    text-align: center;
+    font-weight: 500;
+    color: #007bff;
+}
+
+.result {
+    font-weight: 700;
+    text-align: center;
+    border-radius: 4px;
+    padding: 6px 10px;
+}
+
+/* Conditional styling for the result */
+.win {
+    color: #155724; /* Dark green text */
+    background-color: #d4edda; /* Light green background */
+    border: 1px solid #c3e6cb;
+}
+
+.loss {
+    color: #721c24; /* Dark red text */
+    background-color: #f8d7da; /* Light red background */
+    border: 1px solid #f5c6cb;
+}
+
+.draw {
+    color: #856404; /* Dark yellow text */
+    background-color: #fff3cd; /* Light yellow background */
+    border: 1px solid #ffeeba;
+}
+
+.noData, .note {
+    text-align: center;
+    margin-top: 20px;
+    color: #6c757d;
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+.noData {
+    padding: 20px;
+    border: 2px dashed #ced4da;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
