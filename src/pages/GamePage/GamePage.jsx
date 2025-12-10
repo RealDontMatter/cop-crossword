@@ -4,10 +4,12 @@ import styles from "./GamePage.module.css";
 import { useParams } from "react-router";
 import { ModalLayout } from "../../components/ModalLayout/ModalLayout.jsx";
 import { useGameStore } from "../../store/gameStore.jsx";
+import { difficulties } from "../../utility";
 
 
 export function GamePage() {
     const {nickname, difficulty} = useParams();
+    if(!Object.values(difficulties).includes(difficulty)) return null;
 
     const gameIndex = useGameStore(state => state.gameIndex);
     const startTime = useGameStore(state => state.startTime);
