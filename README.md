@@ -1,3 +1,6 @@
+# License
+[license file](LICENSE)
+
 # Тема
 Варіант 14. Міні кросворд (Crossword 3×3)
 
